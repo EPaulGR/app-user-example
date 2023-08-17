@@ -13,5 +13,96 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <div class="m-3 flex flex-col">
+    <div class="w-full flex justify-center">
+      <ion-avatar class="w-24 h-24">
+        <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+      </ion-avatar>
+    </div>
+    <div class="flex justify-center mt-3">
+      <ion-button>Balance</ion-button>
+      <ion-button *ngIf="edit" (click)="editChange()">Edit</ion-button>
+      <ion-button *ngIf="!edit" (click)="send()">Save</ion-button>
+    </div>
+    <!-- list whit data -->
+    <div class="mt-3" *ngIf="edit">
+      <ion-list>
+        <ion-item>
+          <ion-label>Address: {{userData?.address}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Age: {{userData?.age}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Company: {{userData?.company}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Balance: {{userData?.balance}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Email: {{userData?.email}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Eye color: {{userData?.eyeColor}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>First name: {{userData?.name.first}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Last name: {{userData?.name.last}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Password: {{userData?.password}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Phone: {{userData?.phone}}</ion-label>
+        </ion-item>
+        <ion-item lines="none">
+          <ion-label class="underline font-bold" color="primary" (click)="logOut()">Log out</ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
+    <!-- Edit data -->
+    <div class="mt-3" *ngIf="!edit">
+      <form [formGroup]="form" (ngSubmit)="send()">
+        <ion-list>
+          <ion-item>
+            <ion-input label="Address:" formControlName="address"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Age:" formControlName="age"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Company:" formControlName="company"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Balance:" formControlName="balance"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Email:" formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Eye color:" formControlName="eyeColor"></ion-input>
+          </ion-item>
+          <div formGroupName="name">
+            <ion-item>
+              <ion-input label="First name:" formControlName="first"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Last name:" formControlName="last"></ion-input>
+            </ion-item>  
+          </div>
+          <ion-item>
+            <ion-input label="Password:" formControlName="password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input label="Phone:" formControlName="phone"></ion-input>
+          </ion-item>
+          <ion-item lines="none">
+            <ion-label class="underline font-bold" color="primary" (click)="logOut()">Log out</ion-label>
+          </ion-item>
+        </ion-list>
+      </form>
+    </div>
+  </div>
 </ion-content>
